@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  font-weight: normal;
+}
+
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+	box-sizing: border-box;
+}
+
+/* Common styles */
+body {
+  margin: 0;
+  min-width: 320px;
+  /* height: 100vh; */
+  /* background-color: #060AB2; */
+}
+
+/* Секция игры */
+.memory-game {
+  margin: auto;
+  padding: 10px 15px 20px 15px;
+  max-width: 1200px;
+  background-color: rgb(149, 210, 240);
+  text-align: center;
+}
+
+/* Заголовок игры */
+.memory-game__title {
+  font-family: 'Roboto Mono';
+  font-size: 16px;
+  margin: 0;
+  display: inline-flex;
+  margin-bottom: 15px;
+}
+
+/* wrapper for timer and button - start */
+.wrap-rules {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.wrap-timer {
+  display: flex;
+  height: 100%;
+
+}
+
+.timer__title {
+  margin: 0;
+  margin-right: 10px;
+  font-family: 'Roboto Mono';
+}
+
+.timer__count {
+  margin-right: 5px;
+  font-family: 'Roboto Mono';
+  font-size: 1em;
+  font-weight: bold;
+  background-color: #fff;
+  padding: 4px 6px;
+  border-radius: 5px;
+
+}
+
+.button-start {
+  margin: 0;
+  border: none;
+  margin-left: 50px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: 'Roboto Mono';
+  font-size: 1em;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 3px 2px rgba(0, 0, 0, 0.5);
+}
+.button-start:hover {
+  background-color: rgb(23, 167, 105);
+  color: #fff;
+  box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.5);
+}
+.button-start:active {
+  background-color: rgb(23, 167, 105);
+  color: #fff;
+  transform: translateY(3px);
+  box-shadow: inset 0px 0px 3px 2px rgba(0, 0, 0, 0.5);
+}
+._btn-start_active {
+  background-color: rgb(23, 167, 105);
+  color: #fff;
+}
+._btn-start_hover {
+  box-shadow: none;
+  cursor: auto;
+  box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Игровое поле с карточками */
+.memory-game__container {
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  max-width: 1024px;
+  height: 584px;
+  height: 640px;
+  margin-bottom: 15px;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  /* background-color: rgb(240, 170, 170); */
+}
+
+
+/* Игровая карточка */
+.memory-card {
+  width: calc(25% - 10px);
+  height: calc(25% - 10px);
+  background-color: rgb(23, 167, 105);
+  margin: 5px;
+  position: relative;
+  -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+          box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  cursor: pointer;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform .8s;
+  transition: -webkit-transform .8s;
+  -o-transition: transform .8s;
+  transition: transform .8s;
+  transition: transform .8s, -webkit-transform .8s;
+}
+
+.memory-card:hover {
+  border: 1px solid #000;
+}
+.memory-card:active {
+  -webkit-transform: scale(0.97);
+      -ms-transform: scale(0.97);
+          transform: scale(0.97);
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  -o-transition: transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
+}
+/* переварачиваем карту */
+.memory-card.open {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+/* Когда найдены одинаковые карточки */
+.memory-card.success {
+  background-color: rgba(178, 178, 178, 0.6);
+  color: rgba(70, 131, 62, 0.6);
+}
+
+.memory-card_no-border:hover {
+  border: none;
+}
+
+/* Карта - лицевая сторона и рубашка */
+.memory-card__front,
+.memory-card__back {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: absolute;
+  border-radius: 5px;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  /* background: #1C7CCC; */
+}
+.memory-card__front {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  -o-object-fit: cover;
+     object-fit: cover;
+  vertical-align: baseline;
+}
+
+/* Содержание лицевой стороны */
+.memory-card__front_item {
+  font-family: 'Press Start 2P';
+  /* font-style: italic; */
+  font-size: 5em;
+  /* color: #000; */
+  color: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+/* Содержание рубашки карты */
+.memory-card__back_img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  /* border-style: none; */
+}
+
+/* Кнопка - сыграем еще раз */
+.button-play-again {
+  font-family: 'Roboto Mono';
+  font-size: 20px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  cursor: pointer;
+  background-color: #ed2924;
+  border: none;
+  border-radius: 5px;
+  /* display: none; */
+  -webkit-box-shadow: inset 0px 0px 3px 2px rgba(0, 0, 0, 0.5);
+          box-shadow: inset 0px 0px 3px 2px rgba(0, 0, 0, 0.5);
+  display: none;
+}
+.button-play-again_block {
+  display: block;
+}
+
+.button-play-again:hover {
+  background-color: rgb(23, 167, 105);
+  color: #fff;
+  -webkit-box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.5);
+          box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.5);
+}
+.button-play-again:active {
+  -webkit-transform: translateY(3px);
+      -ms-transform: translateY(3px);
+          transform: translateY(3px);
+  -webkit-box-shadow: inset 0px 0px 3px 2px rgba(0, 0, 0, 0.5);
+          box-shadow: inset 0px 0px 3px 2px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+
+
