@@ -1,7 +1,7 @@
 // Выбираем все карточки
 const cards = document.querySelectorAll('.memory-card');
 
-// Выбираем кнопку начать игру, таймер и контайнер игры
+// Выбираем кнопку начать игру, таймер и контейнер игры
 const btnStartGame = document.getElementById('btn-start-game');
 const btnPlayAgain = document.getElementById('btn-play-again');
 const timerEl = document.getElementById('timer');
@@ -11,9 +11,9 @@ let timerId = null;
 
 // переменные для карточек
 let openStatus = false,
-    success = false;
+  success = false;
 let firstCard = null,
-    secondCard = null;
+  secondCard = null;
 let lockBoard = true;
 
 updateNumbers();
@@ -63,7 +63,7 @@ function checkMatchCards() {
       let timeGame = 60;
       let winTime = timeGame - timerEl.innerHTML;
 
-      if (document.querySelectorAll('.memory-card').length  == cardsArraySuccess.length) {
+      if (document.querySelectorAll('.memory-card').length == cardsArraySuccess.length) {
         alert(`Поздравляем, Вы нашли ВСЕ совпадения за: ${winTime} секунд.\n У Вас осталось времени: ${timerEl.innerHTML} секунд`)
         clearInterval(timerId);
         btnStartGame.removeEventListener('click', onStartGameButtonClick);
@@ -75,7 +75,7 @@ function checkMatchCards() {
 
       firstCard = null;
       secondCard = null;
-    },500);
+    }, 500);
 
     disabledCards();
     return;
@@ -117,7 +117,7 @@ function onStartGameButtonClick() {
     }
 
   }
-   timerId = setInterval(timer, 1000);
+  timerId = setInterval(timer, 1000);
 }
 
 
@@ -147,11 +147,11 @@ cards.forEach(card => card.addEventListener('click', openCard));
 
 
 // Вешаем слушателя на кнопку - сыграть еще раз -
-btnPlayAgain.addEventListener('click', function() {
+btnPlayAgain.addEventListener('click', function () {
   btnStartGame.disabled = false;
   btnStartGame.style.display = 'block';
   btnStartGame.innerHTML = 'начать игру';
-  timerEl.innerHTML = 20;
+  timerEl.innerHTML = 60;
 
   btnPlayAgain.classList.remove('button-play-again_block');
 
@@ -195,11 +195,11 @@ function updateNumbers() {
 
   //функция поиска случайного int в диапазоне
   function randomInteger(min, max) {
-  let rand = min - 0.5 + Math.random() * (max - min + 1);
-  return Math.round(rand);
+    let rand = min - 0.5 + Math.random() * (max - min + 1);
+    return Math.round(rand);
   }
 
-  // находим елемент карточки в котором число
+  // находим элемент карточки в котором число
   let numCardsEl = document.querySelectorAll('.memory-card__front_item');
 
   let newNumber = null;
@@ -208,12 +208,12 @@ function updateNumbers() {
   for (let i = 0; i < numCardsEl.length; i++) {
 
     while (true) {
-      newNumber = randomInteger(1,8);
-      if(arrNum_Cards.indexOf(newNumber) == -1) {
+      newNumber = randomInteger(1, 8);
+      if (arrNum_Cards.indexOf(newNumber) == -1) {
         arrNum_Cards.push(newNumber);
         break;
       }
-      else if(arrNum_Cards.indexOf(newNumber) == arrNum_Cards.lastIndexOf(newNumber)) {
+      else if (arrNum_Cards.indexOf(newNumber) == arrNum_Cards.lastIndexOf(newNumber)) {
         arrNum_Cards.push(newNumber);
         break;
       }
